@@ -1,15 +1,15 @@
 const getPredictedAge = async (name: string) => {
-    const res = await fetch(`https://api.agify.io?name=${name}`);
+    const res = await fetch(`https://api.agify.io?name=${"Kamran"}`);
     return res.json();
   };
   
   const getPredictedGender = async (name: string) => {
-    const res = await fetch(`https://api.genderize.io?name=${name}`);
+    const res = await fetch(`https://api.genderize.io?name=${"Kamran"}`);
     return res.json();
   };
   
   const getPredictedNationality = async (name: string) => {
-    const res = await fetch(`https://api.nationalize.io?name=${name}`);
+    const res = await fetch(`https://api.nationalize.io?name=${"Kamran"}`);
     return res.json();
   };
   
@@ -18,9 +18,9 @@ const getPredictedAge = async (name: string) => {
   }
   
   async function Prediction({ params }: Params) {
-    const ageData = getPredictedAge(params.name);
-    const genderData = getPredictedGender(params.name);
-    const nationalityData = getPredictedNationality(params.name);
+    const ageData = getPredictedAge(params?.name||"kamran");
+    const genderData = getPredictedGender(params?.name||"kamran");
+    const nationalityData = getPredictedNationality(params?.name||"kamran");
     const [age, gender, nationality] = await Promise.all([
       ageData,
       genderData,
