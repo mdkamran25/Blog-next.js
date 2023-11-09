@@ -1,7 +1,7 @@
 const Details = () => {
   return (
-    <main className="flex min-h-screen bg-white flex-col items-center justify-between p-24">
-      <div className="max-w-sm w-full lg:max-w-full lg:flex">
+    <main className="flex min-h-screen bg-white flex-col items-center justify-center">
+      <div className="max-w-sm w-full lg:max-w-3xl lg:flex">
         <div
           className="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden"
           style={{
