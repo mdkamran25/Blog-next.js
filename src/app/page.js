@@ -1,7 +1,7 @@
+'use client'
 import { useRouter } from "next/navigation";
-export default function Home({params}) {
+export default function Home() {
   const { push } = useRouter();
-  console.log(params, "params")
   return (
     <main className="flex min-h-screen bg-white flex-col items-center justify-between p-24">
       <div className="cardContainer grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
