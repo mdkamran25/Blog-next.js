@@ -3,21 +3,17 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 
-function NavBar({}) {
+function NavBar({setCategory, category}) {
   const [navbar, setNavbar] = useState(false);
-  const [category, setCategory] = useState("science");
-
   return (
     <>
       <nav className="w-full bg-black fixed top-0 left-0 right-0 z-10">
         <div className="justify-between px-4 mx-auto lg:max-w-7xl md:items-center md:flex md:px-8">
           <div>
             <div className="flex items-center justify-between py-3 md:py-5 md:block">
-              {/* LOGO */}
               <Link href="/">
-                <h2 className="text-2xl text-cyan-600 font-bold ">LOGO</h2>
+                <h2 className="text-2xl text-cyan-600 font-bold ">BLOG</h2>
               </Link>
-              {/* HAMBURGER BUTTON FOR MOBILE */}
               <div className="md:hidden">
                 <button
                   className="p-2 text-gray-700 rounded-md outline-none focus:border-gray-400 focus:border"
@@ -46,7 +42,7 @@ function NavBar({}) {
                 navbar ? "p-12 md:p-0 block" : "hidden"
               }`}
             >
-              <ul className="h-screen md:h-auto items-center justify-center md:flex ">
+              <ul className="h-screen md:h-auto items-center justify-center align-center mt-4 md:flex ">
                 <li
                   className="pb-6 text-xl text-white py-2 md:px-6 text-center border-b-2 md:border-b-0  hover:bg-purple-900  border-purple-900  md:hover:text-purple-600 md:hover:bg-transparent"
                   onClick={() => {
