@@ -1,6 +1,7 @@
 import React from "react";
 
 const Skeleton = ({key}) => {
+  
   return (
     <div
   key={key}

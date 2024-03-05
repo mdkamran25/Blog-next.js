@@ -1,31 +1,17 @@
-"use client";
-import { blogDetails } from "@/apiUrl/apiUrl";
-import { readTime } from "@/utils/readTime";
-import axios from "axios";
-import { useEffect, useState } from "react";
+import { blogDetails, categoryBlog } from "@/apiUrl/apiUrl";
+import { readTime } from "../../../../utils/readTime";
 
-const Details = ({ params }) => {
-  const [data, setData] = useState(null);
+const Details = async ({ params }) => {
   const { id } = params;
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await axios.get(`${blogDetails}/${id}`);
-        console.log(res.data.result);
-        setData(res.data.result);
-      } catch (error) {
-        console.error(error.message);
-      }
-    };
-
-    fetchData();
-  }, [id]);
+  const res = await fetch(`${blogDetails}${id}`);
+  const data = await res.json();
 
   return (
     <div className="h-[100vh] mx-auto dark:bg-gray-800 dark:text-gray-100">
-      <div className="mt-6 md:mt-[6rem] lg:mt-4 flex flex-col max-w-5xl mx-auto overflow-hidden rounded">
+
+      <div className="flex flex-col max-w-5xl mx-auto overflow-hidden rounded">
         <img
-          src={data?.img}
+          src={data?.result?.img}
           alt=""
           className="w-full h-80 md:h-96 dark:bg-gray-500 md:pt-0"
         />
@@ -36,26 +22,40 @@ const Details = ({ params }) => {
               href="#"
               className="inline-block text-2xl font-semibold sm:text-3xl"
             >
-              {data?.title}
+              {data?.result?.title}
             </a>
             <div>
               <p className="text-xs dark:text-gray-400">
-                Publisher: {data?.publisher} | {`Date: ${data?.updatedAt.slice(0,10) || data?.createdAt.slice(0,10)} `}
+                Publisher: {data?.result?.publisher} | {`Date: ${data?.result?.updatedAt.slice(0, 10) || data?.result?.createdAt.slice(0, 10)} `}
               </p>
             </div>
             <div>
               <p className="text-xs dark:text-gray-400">
-                Written by: {data?.writerName} {`|  ${data?.description && readTime(data?.description, 100)} min read`}
+                Written by: {data?.result?.writerName} {`|  ${data?.result?.description && readTime(data?.result?.description, 100)} min read`}
               </p>
             </div>
           </div>
           <div className="dark:text-gray-100">
-            <p>{data?.description}</p>
+            <p>{data?.result?.description}</p>
           </div>
         </div>
       </div>
     </div>
+    
   );
 };
 
 export default Details;
+
+export async function generateStaticParams() {
+  const res = await fetch(`${categoryBlog}`);
+  const resData = await res.json();
+  const allId = resData.result?.map(blog => (
+    { id: blog._id }
+
+  ))
+
+  // console.log(allId)
+
+  return allId
+}

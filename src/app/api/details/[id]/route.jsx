@@ -7,12 +7,11 @@ export async function GET(req, { params }) {
     const { id } = params;
     await connectMongoDb();
     const data = await Blog.findById(id);  // Use findById instead of find
-    console.log("data: ", data);
 
     if (data) {
-      return NextResponse.json({ result: data, status: true, message: "Data Found" });
+      return NextResponse.json({ result: data, status: true, message: "Data Found" }, {status:200});
     } else {
-      return NextResponse.json({ result: [], status: false, message: "Data not found" });
+      return NextResponse.json({ result: [], status: false, message: "Data not found" }, {status: 403});
     }
   } catch (err) {
     console.log(err);
