@@ -3,7 +3,7 @@ import { readTime } from "../../../../utils/readTime";
 
 const Details = async ({ params }) => {
   const { id } = params;
-  const res = await fetch(`${blogDetails}${id}`);
+  const res = await fetch(`${blogDetails}/${id}`);
   const data = await res.json();
 
   return (

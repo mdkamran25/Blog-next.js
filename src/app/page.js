@@ -3,7 +3,7 @@ import Card from "@/components/Card";
 import Skeleton from "@/components/Skeleton";
 
 export default async function Home() {
-  const res = await fetch(`${categoryBlog}`);
+  const res = await fetch(`${categoryBlog}/science`);
   const resData = await res.json();
 
   return (
